@@ -1,23 +1,22 @@
-%%%%%%%%%%%%%  Function erosion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%  Function erosion.m %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Purpose:  
-%      Compute a eroded image of an original image 
+%      Compute a dilated image of an original image 
 %
 % Input Variables:
-%      s       mXn input 2D gray-scale image to be filtered
-%      sof     size of filter
+%      X       mXn input 2D gray-scale image to be filtered
+%      B       Structuring element 
 % 
 % Returned Results:
-%     temp     new eroded image
+%     temp     new dilated image
 %
 % Processing Flow:
-%      1.  finding the size of the filter,if unspecified then use 3X3.
-%      2.  Place the centre of filter on the image and count the number of   
-%       ones in that particular structure.
-%      3.  If the number of ones is greater than 0 of filter then return 1
-%       (white) at the centre else return 0(black).
-% 
+%      1.  finding the size of the filter.
+%      2.  Place the centre of filter on the image and check whether 1 is 
+%          present in all element.
+%      3.  If present then return 1(white) at centre pixel else return 0. 
+%      
 %  Restrictions/Notes:
-%      This function takes a binary as input. The image is not padded 
+%      This function takes a binary image as input. The image is not padded 
 %       by zeros at the boundary.
 %
 %  The following functions are called:
@@ -26,13 +25,9 @@
 %  Author:      Mandar Parab, Amogh Adishesha and Lyuzhou Zhuang
 %  Date:        28/01/2017
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 function [ temp ] = erosion( X,B )
-%UNTITLED2 Summary of this function goes here
-%   Detailed explanation goes h
-%UNTITLED5 Summary of this function goes here
-%   Detailed explanation goes here
 g=X;
- 
 g2 = false(size(g));
 s = B;
 sof=size(B);
